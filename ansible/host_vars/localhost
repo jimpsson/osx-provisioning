@@ -34,6 +34,7 @@ homebrew_packages:
   - tree
   - heroku-toolbelt
   - { name: httpd24, install_option: with-mpm-event }
+  - mycli
 
 homebrew_cask_packages:
   - java
@@ -45,12 +46,9 @@ homebrew_cask_packages:
   - evernote
   - skitch
   - slack
-  - github-desktop
   - sequel-pro
-  - bettertouchtool
   - the-unarchiver
   - coteditor
-  - istat-menus
   - bartender
   - karabiner
   - 1password
