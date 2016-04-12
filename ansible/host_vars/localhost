@@ -18,6 +18,7 @@ homebrew_packages:
   - curl
   - jq
   - vim
+  - neovim/neovim/neovim
   - reattach-to-user-namespace
   - mysql
   - sqlite
