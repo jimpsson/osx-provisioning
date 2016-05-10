@@ -6,10 +6,16 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 
 [[plugins]] # カラースキーマ
-repo = 'sjl/badwolf'
+repo = 'joshdick/onedark.vim'
 hook_add = '''
   " カラースキーマの適用はsource後じゃないといけないので遅延セット
-  autocmd MyAutoCmd VimEnter * colorscheme badwolf
+  autocmd MyAutoCmd VimEnter * colorscheme onedark
+  autocmd MyAutoCmd VimEnter * call lightline#colorscheme()
+'''
+
+[[plugins]] # カラースキーマ
+repo = 'shirataki/lightline-onedark'
+hook_add = '''
   autocmd MyAutoCmd VimEnter * call lightline#colorscheme()
 '''
 
@@ -36,15 +42,15 @@ hook_add = '''
         \ 'separator': { 'left': '⮀', 'right': '⮂' },
         \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
         \ }
-  
+
   function! LightLineModified()
     return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
   endfunction
-  
+
   function! LightLineReadonly()
     return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
   endfunction
-  
+
   function! LightLineFilename()
     return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
           \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
@@ -53,7 +59,7 @@ hook_add = '''
           \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
           \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
   endfunction
-  
+
   function! LightLineFugitive()
     if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
       let _ = fugitive#head()
@@ -61,19 +67,19 @@ hook_add = '''
     endif
     return ''
   endfunction
-  
+
   function! LightLineFileformat()
     return winwidth(0) > 70 ? &fileformat : ''
   endfunction
-  
+
   function! LightLineFiletype()
     return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
   endfunction
-  
+
   function! LightLineFileencoding()
     return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
   endfunction
-  
+
   function! LightLineMode()
     return winwidth(0) > 60 ? lightline#mode() : ''
   endfunction
